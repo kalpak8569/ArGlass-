@@ -36,7 +36,7 @@ ACCENT = "0x2E6BFF"
 # Раскладки: (cam_h, subs_h, game_h); всё, что ниже — нижняя зона (баннер / плашки)
 LAYOUTS = {
     "plain": (620, 140, 840),    # без постоянного баннера: нижняя зона 320 под хук/серию
-    "banner": (500, 120, 608),   # с баннером >= 1/6 экрана: нижняя зона 692
+    "banner": (440, 110, 810),   # с баннером >= 1/6 экрана: нижняя зона 560 (баннер ~17% экрана)
 }
 
 
@@ -169,6 +169,7 @@ def render(job):
     out = job["out"]
     tmp = out + ".base.mp4" if job.get("midroll") else out
     ass_path = out + ".ass"
+    os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     pauses = make_ass(job, dur, layout, ass_path)
 
     ins, fc = [], []
@@ -195,11 +196,11 @@ def render(job):
         ck = ad["chroma_key"]
         bb = ad["content_bbox"]
         # рисунок баннера (bbox) вписываем в нижнюю зону с отступами, проверяем площадь
-        bh = min(zone_h - 150, int((W - 40) / (bb["w"] / bb["h"])))
+        bh = min(zone_h - 35, int((W - 40) / (bb["w"] / bb["h"])))
         bw = int(bh * bb["w"] / bb["h"]) // 2 * 2
         area = bw * bh / (W * H)
         assert area >= ad["placement"]["min_screen_area"], f"баннер {area:.3f} < нормы"
-        by = zone_top + 20
+        by = zone_top + 15
         fc.append(f"[{n}:v]fps=60,crop={bb['w']}:{bb['h']}:{bb['x']}:{bb['y']},"
                   f"colorkey={ck['color']}:{ck['similarity']}:{ck['blend']},despill=type=green,"
                   f"scale={bw}:{bh}:flags=lanczos,trim=0:{dur:.3f},setpts=PTS-STARTPTS[ban]")
