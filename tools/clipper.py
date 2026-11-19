@@ -152,6 +152,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 def render(job):
     reg = ads.load_registry()
     banner = job.get("banner")
+    brands = {reg["ads"][k]["brand"] for k in (banner, job.get("midroll")) if k}
+    for k in (banner, job.get("midroll")):
+        if k and reg["ads"][k].get("exclusive") and len(brands) > 1:
+            raise SystemExit(f"{k}: нельзя совмещать с рекламой других брендов")
     layout = job.get("layout") or ("banner" if banner else "plain")
     cam_h, subs_h, game_h = LAYOUTS[layout]
     zone_top = cam_h + subs_h + game_h

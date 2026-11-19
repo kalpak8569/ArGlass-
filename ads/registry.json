@@ -154,6 +154,71 @@
         "намеренно уменьшен/скрыт",
         "без остановки кадра / оригинальный звук не остановлен"
       ]
+    },
+    "bigballs": {
+      "brand": "BIG BALLS",
+      "type": "midroll",
+      "exclusive": true,
+      "file": "ads/media/bigballs_midroll.mp4",
+      "source": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "duration": 4.07,
+        "has_audio": true,
+        "voiceover": "Большие яйца, большой дроп. Биг Боллс."
+      },
+      "chroma_key": {
+        "color": "0x298A3A",
+        "similarity": 0.18,
+        "blend": 0.06
+      },
+      "content_bbox": {
+        "x": 348,
+        "y": 148,
+        "w": 1208,
+        "h": 748
+      },
+      "placement": {
+        "mode": "center_scaled",
+        "render_height": 918,
+        "min_screen_area": 0.3,
+        "note": "кадр 1920x1080 масштабируется в 0.85 (1632x918) и центрируется; сам рисунок ≈1027x636 = 31.5% экрана; по краям обрезается только зелёный фон"
+      },
+      "schedule": {
+        "mode": "from_10_repeat",
+        "min_start": 10,
+        "window": [
+          10,
+          14
+        ],
+        "repeat_every": 60,
+        "min_left_for_repeat": 60,
+        "under_10s": "exact_middle"
+      },
+      "behavior": {
+        "interrupt": true,
+        "background": "стоп-кадр (пауза основного видео)",
+        "dim_background": false,
+        "source_audio": "mute",
+        "ad_audio_loudness_lufs": -14
+      },
+      "max_speed": 1.2,
+      "content_restrictions": [
+        "накрутка",
+        "платное продвижение",
+        "фото и слайдшоу",
+        "озвученные истории Reddit",
+        "фильмы и сериалы"
+      ],
+      "rejection_rules": [
+        "не по центру",
+        "меньше 30% экрана",
+        "плохо слышна озвучка",
+        "раньше 10-й секунды",
+        "без паузы основного видео",
+        "реклама или упоминания других проектов в ролике (не совмещать с другими брендами)"
+      ]
     }
   }
 }

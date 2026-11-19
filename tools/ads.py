@@ -56,6 +56,20 @@ def midroll_points(clip, content_dur, ad_dur, sched, pauses=None):
         pool = pauses if pauses is not None else speech_pauses(clip)
         cands = [p for p in pool if lo <= p <= hi]
         return [min(cands, key=lambda p: abs(p - target)) if cands else target]
+    if mode == "from_10_repeat":
+        if content_dur < sched["min_start"]:
+            return [content_dur / 2]
+        lo, hi = sched["window"]
+        hi = min(hi, content_dur)
+        pool = pauses if pauses is not None else speech_pauses(clip)
+        cands = [p for p in pool if lo <= p <= hi]
+        first = min(cands) if cands else float(lo)
+        pts = [first]
+        while content_dur - (pts[-1] + sched["repeat_every"]) >= sched["min_left_for_repeat"]:
+            nxt = pts[-1] + sched["repeat_every"]
+            near = [p for p in pool if nxt <= p <= nxt + 3]
+            pts.append(min(near) if near else nxt)
+        return pts
     raise ValueError(mode)
 
 
