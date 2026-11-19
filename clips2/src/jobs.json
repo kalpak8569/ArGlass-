@@ -1,0 +1,64 @@
+[
+ {
+  "source": "<vod 1:00:00-2:00:00 1080p60>.mp4",
+  "source_offset": 3600,
+  "cam": [
+   0,
+   2,
+   491,
+   273
+  ],
+  "game": [
+   492,
+   0,
+   1200,
+   1080
+  ],
+  "words": "clips2/src/words.json",
+  "layout": "full",
+  "out": "/home/user/ArGlass-/clips2/01_otmenite_ego.mp4",
+  "parts": [
+   [
+    4333.3,
+    4345
+   ],
+   [
+    4359.6,
+    4417.5
+   ]
+  ],
+  "hook": "Я АБСОЛЮТНОЕ ЗЛО",
+  "hook_sub": "Бустер сбил животное в GTA 6"
+ },
+ {
+  "source": "<vod 1:00:00-2:00:00 1080p60>.mp4",
+  "source_offset": 3600,
+  "cam": [
+   0,
+   2,
+   491,
+   273
+  ],
+  "game": [
+   492,
+   0,
+   1200,
+   1080
+  ],
+  "words": "clips2/src/words.json",
+  "layout": "full",
+  "out": "/home/user/ArGlass-/clips2/02_mne_zhena_zvonit.mp4",
+  "parts": [
+   [
+    4717.6,
+    4743.5
+   ],
+   [
+    4783.6,
+    4824.8
+   ]
+  ],
+  "hook": "МНЕ ЖЕНА ЗВОНИТ, ТИШЕ!",
+  "hook_sub": "Люсия выходит из тюрьмы"
+ }
+]
