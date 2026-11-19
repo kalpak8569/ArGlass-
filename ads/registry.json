@@ -1,34 +1,158 @@
 {
-  "canvas": {"width": 1080, "height": 1920},
+  "canvas": {
+    "width": 1080,
+    "height": 1920
+  },
   "ads": {
     "natria_vpn": {
       "brand": "NATRIA VPN",
       "type": "midroll",
       "file": "ads/media/natria_vpn_midroll.mp4",
-      "source": {"width": 1770, "height": 750, "fps": 30, "duration": 7.2, "has_audio": true,
-                 "voiceover": "Натрия VPN. Когда обычный VPN уже не справляется."},
-      "chroma_key": {"color": "0x00FF00", "similarity": 0.32, "blend": 0.08},
+      "source": {
+        "width": 1770,
+        "height": 750,
+        "fps": 30,
+        "duration": 7.2,
+        "has_audio": true,
+        "voiceover": "Натрия VPN. Когда обычный VPN уже не справляется."
+      },
+      "chroma_key": {
+        "color": "0x00FF00",
+        "similarity": 0.32,
+        "blend": 0.08
+      },
       "placement": {
         "anchor": "center",
         "min_screen_area": 0.25,
         "render_height": 500,
-        "note": "Карточка 2.36:1 при ширине 1080 даёт только 23.9% площади, поэтому масштаб по высоте 500 (≈26%), боковые края карточки обрезаются краями кадра (контент не задевается)"
+        "note": "Карточка 2.36:1 при ширине 1080 даёт только 23.9% площади, поэтому масштаб по высоте 500 (≈26%), боковые края карточки обрезаются краями кадра (контент не задевается)",
+        "mode": "center_scaled"
       },
       "schedule": {
-        "under_120s": {"count": 1, "at": "exact_middle"},
-        "from_120s": {"count": 2, "at_seconds": [30, 90]}
+        "mode": "middle_or_fixed",
+        "under_120s": {
+          "count": 1,
+          "at": "exact_middle"
+        },
+        "from_120s": {
+          "count": 2,
+          "at_seconds": [
+            30,
+            90
+          ]
+        }
       },
       "behavior": {
         "interrupt": true,
         "background": "стоп-кадр ролика, затемнён и размыт",
         "source_audio": "mute",
-        "ad_audio_loudness_lufs": -14
+        "ad_audio_loudness_lufs": -14,
+        "dim_background": true
       },
       "max_speed": 1.3,
       "rejection_rules": [
         "не по центру / не в середине ролика",
         "меньше 25% площади экрана",
         "плохо слышна озвучка"
+      ]
+    },
+    "playerok_banner": {
+      "brand": "PLAYEROK",
+      "type": "banner",
+      "variant": "GTA6",
+      "valid": {
+        "from": "2026-11-01",
+        "to": "2026-11-30",
+        "note": "с 01.11 по 30.11 использовать версию с ГТА6"
+      },
+      "file": "ads/media/playerok_banner_gta6.mov",
+      "source": {
+        "width": 2000,
+        "height": 1920,
+        "fps": 60,
+        "duration": 12.25,
+        "has_audio": false
+      },
+      "chroma_key": {
+        "color": "0x00FF00",
+        "similarity": 0.32,
+        "blend": 0.08
+      },
+      "content_bbox": {
+        "x": 312,
+        "y": 380,
+        "w": 1504,
+        "h": 1168,
+        "note": "объединённая рамка рисунка по всем кадрам"
+      },
+      "placement": {
+        "mode": "zone",
+        "min_screen_area": 0.1667,
+        "loop": true,
+        "full_duration": true,
+        "note": "рисунок (content_bbox) >= 1/6 экрана, в активной зоне, не затемнять, не обрезать, не перекрывать UI, не уменьшать и не скрывать"
+      },
+      "use_when": "короткие ролики до 12 с или когда не нужен баннер с озвучкой",
+      "rejection_rules": [
+        "затемнён/обрезан/скрыт интерфейсом",
+        "намеренно уменьшен или скрыт",
+        "не на всё видео",
+        "меньше 1/6 экрана"
+      ]
+    },
+    "playerok_midroll": {
+      "brand": "PLAYEROK",
+      "type": "midroll",
+      "file": "ads/media/playerok_midroll.mp4",
+      "source": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 60,
+        "duration": 3.18,
+        "has_audio": true
+      },
+      "chroma_key": {
+        "color": "0x00FF00",
+        "similarity": 0.32,
+        "blend": 0.08
+      },
+      "placement": {
+        "mode": "native_canvas",
+        "note": "шаблон 1080x1920 накладывается 1:1 — позиция строго как в примере"
+      },
+      "schedule": {
+        "mode": "window",
+        "short_threshold": 20,
+        "under_20s": {
+          "any_time": true,
+          "not_last_seconds": 3
+        },
+        "from_20s": {
+          "start_window": [
+            9,
+            21
+          ],
+          "preferred": [
+            10,
+            20
+          ],
+          "not_last_seconds": 3
+        }
+      },
+      "behavior": {
+        "interrupt": true,
+        "background": "стоп-кадр без затемнения и размытия",
+        "dim_background": false,
+        "source_audio": "mute",
+        "ad_audio_loudness_lufs": -14
+      },
+      "max_speed": 1.0,
+      "use_when": "ролики от 12 с",
+      "rejection_rules": [
+        "не в той позиции, что в примере",
+        "затемнён/обрезан/ускорен",
+        "намеренно уменьшен/скрыт",
+        "без остановки кадра / оригинальный звук не остановлен"
       ]
     }
   }
