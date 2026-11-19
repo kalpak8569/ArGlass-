@@ -1,0 +1,35 @@
+{
+  "canvas": {"width": 1080, "height": 1920},
+  "ads": {
+    "natria_vpn": {
+      "brand": "NATRIA VPN",
+      "type": "midroll",
+      "file": "ads/media/natria_vpn_midroll.mp4",
+      "source": {"width": 1770, "height": 750, "fps": 30, "duration": 7.2, "has_audio": true,
+                 "voiceover": "Натрия VPN. Когда обычный VPN уже не справляется."},
+      "chroma_key": {"color": "0x00FF00", "similarity": 0.32, "blend": 0.08},
+      "placement": {
+        "anchor": "center",
+        "min_screen_area": 0.25,
+        "render_height": 500,
+        "note": "Карточка 2.36:1 при ширине 1080 даёт только 23.9% площади, поэтому масштаб по высоте 500 (≈26%), боковые края карточки обрезаются краями кадра (контент не задевается)"
+      },
+      "schedule": {
+        "under_120s": {"count": 1, "at": "exact_middle"},
+        "from_120s": {"count": 2, "at_seconds": [30, 90]}
+      },
+      "behavior": {
+        "interrupt": true,
+        "background": "стоп-кадр ролика, затемнён и размыт",
+        "source_audio": "mute",
+        "ad_audio_loudness_lufs": -14
+      },
+      "max_speed": 1.3,
+      "rejection_rules": [
+        "не по центру / не в середине ролика",
+        "меньше 25% площади экрана",
+        "плохо слышна озвучка"
+      ]
+    }
+  }
+}
